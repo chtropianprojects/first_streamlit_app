@@ -1,5 +1,4 @@
-import streamlit
-
-streamlit.title("My parents new healthier dinner")
-streamlit.text("this is the best dinner of the world")
-streamlit.code("import py as python", language="python")
+streamlit.header('Breakfast Menu')
+streamlit.text('Omega 3 & Blueberry Oatmeal')
+streamlit.text('Kale, Spinach & Rocket Smoothie')
+streamlit.text('Hard-Boiled Free-Range Egg')
