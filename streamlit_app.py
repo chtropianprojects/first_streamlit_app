@@ -11,7 +11,7 @@ streamlit.text('Hard-Boiled Free-Range Egg')
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 
-def back_from_function(fruit_choice):
+def get_fruity_data(fruit_choice):
   fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit_choice}")
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
   return fruityvice_normalised
@@ -43,7 +43,7 @@ try:
     back_from_function=get_fruity_data(fruit_choice)
     streamlit.dataframe(back_from_function)
 except URLError as e:
-  streamlit.error()
+  streamlit.error(e)
 
 
 
