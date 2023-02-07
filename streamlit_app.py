@@ -11,7 +11,7 @@ streamlit.text('Hard-Boiled Free-Range Egg')
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 
-function back_from_function(fruit_choice):
+def back_from_function(fruit_choice):
   fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit_choice}")
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
   return fruityvice_normalised
