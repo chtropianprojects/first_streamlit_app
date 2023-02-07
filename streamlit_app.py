@@ -36,7 +36,7 @@ third_choice = streamlit.text_input('What fruit would you like information about
 my_cur.execute(f"select * from pc_rivery_db.public.fruit_load_list where Fruit_name='{third_choice}'")
 my_data_rows = my_cur.fetchall()
 streamlit.dataframe(my_data_rows)
-streamlit.write("thanks for adding",fruit_add)
+streamlit.write('thanks for adding',fruit_add)
 my_cur.execute(f"insert into PC_RIVERY_DB.PUBLIC.fruit_load_list values('fromstreamlight')")
 
 # Display the table on the page.
