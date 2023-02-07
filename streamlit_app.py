@@ -29,6 +29,12 @@ my_fruit_list = my_fruit_list.set_index('Fruit')
 fruits_selected=streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),["Avocado","Strawberries"])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 
+my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
+my_data_row = my_cur.fetchone()
+
+streamlit.header("List of products")
+streamlit.dataframe(my_data_row)
+
 
 # Display the table on the page.
 
