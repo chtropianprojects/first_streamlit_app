@@ -17,9 +17,12 @@ def get_fruity_data(fruit_choice):
   return fruityvice_normalized
 
 
-
-
-
+def get_fruit_load_list():
+  with mycnx.cursor() as  my_cur:
+    my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")  
+    returm my_cur.fetchall()
+ 
+  
 
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
@@ -46,23 +49,21 @@ except URLError as e:
   streamlit.error()
 
 
+streamlit.header("List of products")
 
 streamlit.stop()
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_data_rows = my_cur.fetchall()
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
+if streamlit.button('get fruit load list'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    my_data_rows = get_fruit_load_list()
+    streamlit.dataframe(my_data_rows)
 
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
 
-streamlit.header("List of products")
-third_choice = streamlit.text_input('What fruit would you like information about? (connection with sql)','banana')
-my_cur.execute(f"select * from pc_rivery_db.public.fruit_load_list where Fruit_name='{third_choice}'")
-my_data_rows = my_cur.fetchall()
-streamlit.dataframe(my_data_rows)
-streamlit.write('thanks for adding',third_choice)
-my_cur.execute(f"insert into PC_RIVERY_DB.PUBLIC.fruit_load_list values('fromstreamlight')")
+
+
+#third_choice = streamlit.text_input('What fruit would you like information about? (connection with sql)','banana')
+#my_cur.execute(f"select * from pc_rivery_db.public.fruit_load_list where Fruit_name='{third_choice}'")
+#my_data_rows = my_cur.fetchall()
+
+#streamlit.write('thanks for adding',third_choice)
+#my_cur.execute(f"insert into PC_RIVERY_DB.PUBLIC.fruit_load_list values('fromstreamlight')")
 
