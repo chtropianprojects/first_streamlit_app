@@ -14,10 +14,10 @@ my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_rows = my_cur.fetchall()
 my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchone()
+my_data_rows = my_cur.fetchall()
 
 streamlit.text("List of products")
-streamlit.text(my_data_row)
+streamlit.text(my_data_rows)
 
 
 
@@ -30,10 +30,10 @@ fruits_selected=streamlit.multiselect("Pick some fruits:", list(my_fruit_list.in
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_row = my_cur.fetchone()
+my_data_rows = my_cur.fetchall()
 
 streamlit.header("List of products")
-streamlit.dataframe(my_data_row)
+streamlit.dataframe(my_data_rows)
 
 
 # Display the table on the page.
