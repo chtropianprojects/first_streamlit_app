@@ -19,8 +19,8 @@ def get_fruity_data(fruit_choice):
 
 def get_fruit_load_list():
   with mycnx.cursor() as  my_cur:
-    my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")  
-    returm my_cur.fetchall()
+    my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
+    return my_cur.fetchall()
  
   
 
