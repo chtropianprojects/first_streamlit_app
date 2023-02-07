@@ -33,7 +33,7 @@ my_data_rows = my_cur.fetchall()
 
 streamlit.header("List of products")
 third_choice = streamlit.text_input('What fruit would you like information about? (connection with sql)','banana')
-my_cur.execute(f"select * from pc_rivery_db.public.fruit_load_list where fruit={third_choice}")
+my_cur.execute(f"select * from pc_rivery_db.public.fruit_load_list where Fruit_name='{third_choice}'")
 my_data_rows = my_cur.fetchall()
 streamlit.dataframe(my_data_rows)
 
